@@ -1,0 +1,67 @@
+{
+  "entity_name": "budgets",
+  "components": [
+    {
+      "field_type": "dropdownComponent",
+      "field_id": "category_id",
+      "entity_field_name": "category_id",
+      "width": 12,
+      "label": "Category",
+      "placeholder": "Select category",
+      "required": true,
+      "listname": "categories",
+      "optCode": "id",
+      "optValue": "name",
+      "list_icon_field_id": "icon"
+    },
+    {
+      "field_type": "textfield",
+      "field_id": "amount",
+      "entity_field_name": "amount",
+      "width": 12,
+      "label": "Budget Amount",
+      "name": "amount",
+      "type": "number",
+      "placeholder": "e.g. 5000",
+      "required": true,
+      "regex": "^[0-9]{1,12}(\\.[0-9]{1,2})?$"
+    },
+    {
+      "field_type": "dropdownComponent",
+      "field_id": "period_type",
+      "entity_field_name": "period_type",
+      "width": 12,
+      "label": "Month",
+      "placeholder": "Select Month",
+      "required": true,
+      "listname": "Months",
+      "hasDependentField": true
+    },
+    {
+      "field_type": "textfield",
+      "field_id": "start date",
+      "entity_field_name": "start_date",
+      "hidden": true,
+      "condition": [
+        {
+          "dependentFieldId": "period_type",
+          "conditionAction": "updatechildfielddata",
+          "isStartDate": true
+        }
+      ]
+    },
+    {
+      "field_type": "textfield",
+      "field_id": "end date",
+      "entity_field_name": "end_date",
+      "hidden": true,
+      "condition": [
+        {
+          "dependentFieldId": "period_type",
+          "conditionAction": "updatechildfielddata",
+          "isEndDate": true
+        }
+      ]
+    }
+  ]
+}

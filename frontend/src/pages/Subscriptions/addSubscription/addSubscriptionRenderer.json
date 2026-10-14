@@ -1,0 +1,79 @@
+{
+  "entity_name": "subscriptions",
+  "components": [
+    {
+      "field_type": "textfield",
+      "field_id": "name",
+      "entity_field_name": "name",
+      "width": 12,
+      "label": "Service Name",
+      "name": "name",
+      "placeholder": "e.g. Netflix",
+      "required": true
+    },
+    {
+      "field_type": "dropdownComponent",
+      "field_id": "category_id",
+      "entity_field_name": "category_id",
+      "width": 12,
+      "label": "Category",
+      "placeholder": "Select category",
+      "required": true,
+      "listname": "categories",
+      "list_icon_field_id": "icon",
+      "optCode": "id",
+      "optValue": "name",
+      "hasIcon": {
+        "listName": "CATEGORY_ICONS",
+        "iconFieldName": "name"
+      }
+    },
+    {
+      "field_type": "textfield",
+      "field_id": "amount",
+      "entity_field_name": "amount",
+      "width": 12,
+      "label": "Amount",
+      "name": "amount",
+      "type": "number",
+      "placeholder": "e.g. 299",
+      "required": true,
+      "regex": "^[0-9]{1,12}(\\.[0-9]{1,2})?$"
+    },
+    {
+      "field_type": "dropdownComponent",
+      "field_id": "billing_cycle",
+      "entity_field_name": "billing_cycle",
+      "width": 12,
+      "label": "Billing Cycle",
+      "name": "billing_cycle",
+      "placeholder": "Select billing cycle",
+      "required": true,
+      "listname": "Billing_Cycle",
+      "hasDependentField": true
+    },
+    {
+      "field_type": "datePickerComponent",
+      "field_id": "next_billing_date",
+      "entity_field_name": "next_billing_date",
+      "width": 12,
+      "label": "Next Billing Date",
+      "required": true,
+      "condition": [
+        {
+          "dependentFieldId": "billing_cycle",
+          "conditionAction": "updatechildfielddata",
+          "isByPeriod": true
+        }
+      ]
+    },
+    {
+      "field_type": "toggleComponent",
+      "field_id": "is_active",
+      "entity_field_name": "is_active",
+      "label": "Status",
+      "name": "is_active",
+      "defaultValue": true
+    }
+  ]
+}

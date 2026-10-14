@@ -1,0 +1,65 @@
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
+export const loginUser = async ({ email, password }) => {
+  const response = await fetch(`${API_URL}/auth/login`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+      password,
+    }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Invalid email or password");
+  }
+
+  return data;
+};
+
+export const logoutUser = async (userId) => {
+  const response = await fetch(`${API_URL}/auth/logout`, {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userId: userId,
+    }),
+  });
+
+  const data = await response.json();
+
+  if (!response.ok) {
+    throw new Error(data.message || "Error logging out");
+  }
+
+  return data;
+};
+
+export const signupUser = async (payload) => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/auth/signup`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    },
+  );
+
+  const result = await response.json();
+
+  if (!response.ok) {
+    throw new Error(result?.message || result?.error || "Signup failed.");
+  }
+
+  return result;
+};

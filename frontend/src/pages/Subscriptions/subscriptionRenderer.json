@@ -1,0 +1,103 @@
+{
+  "title": "Subscriptions",
+  "description": "Track and manage your recurring subscriptions.",
+  "components": [
+    {
+      "field_id": "subscription-table",
+      "field_type": "tableComponent",
+      "entity_name": "v_subscription_list",
+      "pagetitle": "Add Subscription",
+      "parent_entity": "subscriptions",
+      "columns": [
+        {
+          "col_id": "service",
+          "entity_field_name": "service",
+          "col_name": "Service",
+          "order": 1,
+          "flex": 3,
+          "icon": { "has_icon": true, "has_icon_colour": true }
+        },
+        {
+          "col_id": "category",
+          "entity_field_name": "category",
+          "col_name": "Category",
+          "order": 2,
+          "value_based_color": "true"
+        },
+        {
+          "col_id": "amount",
+          "entity_field_name": "amount",
+          "col_name": "Amount",
+          "order": 3,
+          "isAmount": true,
+          "sx": {
+            "fontWeight": 600,
+            "color": "#101A44"
+          }
+        },
+        {
+          "col_id": "billing_cycle",
+          "entity_field_name": "billing_cycle",
+          "col_name": "Billing Cycle",
+          "order": 4
+        },
+        {
+          "col_id": "next_billing_date",
+          "entity_field_name": "next_billing_date",
+          "col_name": "Next Billing Date",
+          "order": 5,
+          "colType": "date"
+        },
+        {
+          "col_id": "status",
+          "entity_field_name": "status",
+          "col_name": "Status",
+          "order": 6,
+          "value_based_color": "true"
+        },
+        {
+          "col_id": "icon",
+          "entity_field_name": "icon",
+          "col_name": "Icon",
+          "order": 7,
+          "hide": true
+        },
+        {
+          "col_id": "color",
+          "entity_field_name": "color",
+          "col_name": "Color",
+          "order": 8,
+          "hide": true
+        }
+      ],
+      "toolbars": [
+        {
+          "toolbar_id": "subscription_add",
+          "isbutton": true,
+          "toolbar_name": "Add Subscription",
+          "toolbar_action": "add",
+          "entity_name": "subscriptions",
+          "order": 1,
+          "component_path": "Subscription/addSubscription/addSubscription"
+        },
+        {
+          "toolbar_id": "subscription_edit",
+          "isbutton": false,
+          "toolbar_name": "Edit Subscription",
+          "toolbar_action": "edit",
+          "entity_name": "subscriptions",
+          "order": 2,
+          "component_path": "Subscription/addSubscription/addSubscription"
+        },
+        {
+          "toolbar_id": "subscription_delete",
+          "isbutton": false,
+          "toolbar_name": "Delete Subscription",
+          "toolbar_action": "delete",
+          "entity_name": "subscriptions",
+          "order": 3
+        }
+      ]
+    }
+  ]
+}

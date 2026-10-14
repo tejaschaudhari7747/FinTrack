@@ -1,0 +1,83 @@
+{
+  "entity_name": "categories",
+  "components": [
+    {
+      "field_type": "segmentButtonComponent",
+      "field_id": "type",
+      "label": "Type",
+      "entity_field_name": "category_type",
+      "defaultValue": "Expense",
+      "listname": "expense_categories"
+    },
+    {
+      "field_type": "textfield",
+      "field_id": "category name",
+      "entity_field_name": "name",
+      "label": "Category Name",
+      "placeholder": "Enter Category Name",
+      "required": true
+    },
+    {
+      "field_type": "buttonGroupComponent",
+      "field_id": "category_level",
+      "entity_field_name": "category_level",
+      "label": "Category Level",
+      "required": true,
+      "hasDependentField": true,
+      "options": [
+        {
+          "label": "Main Category",
+          "value": "Main Category"
+        },
+        {
+          "label": "Sub Category",
+          "value": "Sub Category"
+        }
+      ]
+    },
+    {
+      "field_type": "dropdownComponent",
+      "field_id": "parent_category",
+      "entity_field_name": "parent_category_id",
+      "hidden": true,
+      "label": "Parent Category",
+      "listname": "categories",
+      "list_icon_field_id": "icon",
+      "optCode": "id",
+      "optValue": "name",
+      "condition": [
+        {
+          "dependentFieldId": "category_level",
+          "conditionAction": "show",
+          "conditionValue": "Sub Category"
+        },
+        {
+          "dependentFieldId": "category_level",
+          "conditionAction": "mandatory",
+          "conditionValue": "Sub Category"
+        },
+        {
+          "dependentFieldId": "category_level",
+          "conditionAction": "clear",
+          "conditionValue": "Main Category"
+        }
+      ]
+    },
+    {
+      "field_type": "iconComponent",
+      "field_id": "icon",
+      "label": "Icon",
+      "entity_field_name": "icon",
+      "required": true,
+      "defaultValue": "shopping-cart"
+    },
+    {
+      "field_type": "colorSelectComponent",
+      "field_id": "color",
+      "label": "Color",
+      "entity_field_name": "color",
+      "required": true,
+      "defaultValue": "#6842FF"
+    }
+  ]
+}

@@ -1,0 +1,279 @@
+{
+  "id": "dashboard",
+  "type": "page",
+  "title": "Dashboard",
+  "description": "Dashboard page for financial overview",
+  "components": [
+    {
+      "field_id": "summary-container",
+      "field_type": "layoutContainer",
+      "width": 12,
+      "children": [
+        {
+          "field_id": "dashboard-tiles",
+          "field_type": "tilesComponent",
+          "entity_name": "v_transaction_summary",
+          "tiles": [
+            {
+              "key": 1,
+              "control_id": "total-income",
+              "tiles_name": "Total Income",
+              "entity_field_name": "total_income",
+              "icon": {
+                "icon_name": "income-icon",
+                "icon_color": "#2E7D32",
+                "background_color": "#9bf39f"
+              },
+              "trend": {
+                "trend_label_field_name": "total_income_trend",
+                "trend_percentage_field_name": "total_income_percentage"
+              }
+            },
+            {
+              "key": 2,
+              "control_id": "total-expenses",
+              "tiles_name": "Total Expenses",
+              "entity_field_name": "total_expenses",
+              "icon": {
+                "icon_name": "expenses-icon",
+                "icon_color": "#6A1B9A",
+                "background_color": "#d8b9dd"
+              },
+              "trend": {
+                "trend_label_field_name": "total_expenses_trend",
+                "trend_percentage_field_name": "total_expenses_percentage"
+              }
+            },
+            {
+              "key": 3,
+              "control_id": "remaining_balance",
+              "tiles_name": "Remaining Balance",
+              "entity_field_name": "remaining_balance",
+              "icon": {
+                "icon_name": "balance-icon",
+                "icon_color": "#2E7D32",
+                "background_color": "#9bf39f"
+              },
+              "trend": {
+                "trend_label_field_name": "remaining_balance_trend",
+                "trend_percentage_field_name": "remaining_balance_percentage"
+              }
+            },
+            {
+              "key": 4,
+              "control_id": "total-savings",
+              "tiles_name": "Total Savings",
+              "entity_field_name": "total_saving",
+              "icon": {
+                "icon_name": "savings-icon",
+                "icon_color": "#6A1B9A",
+                "background_color": "#d8b9dd"
+              },
+              "trend": {
+                "trend_label_field_name": "total_saving_trend",
+                "trend_percentage_field_name": "total_saving_percentage"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "field_id": "analytics-container",
+      "field_type": "layoutContainer",
+      "width": 12,
+      "children": [
+        {
+          "field_id": "spending-trend",
+          "field_type": "lineChartComponent",
+          "entity_name": "v_spending_trend",
+          "width": 7,
+          "title": "Spending Trend",
+          "filterLabel": "This Month",
+          "xAxisKey": "date",
+          "dataKey": "amount",
+          "height": 300,
+          "showArea": true,
+          "showPoints": true
+        },
+        {
+          "field_id": "monthly-budget-table",
+          "field_type": "tableComponent",
+          "entity_name": "v_monthly_budget_vs_actual",
+          "width": 5,
+          "tableTitle": "Monthly Budget",
+          "columns": [
+            {
+              "col_id": "category",
+              "entity_field_name": "category_name",
+              "col_name": "Category",
+              "order": 1,
+              "icon": {
+                "icon_entity_field": "category_icon",
+                "icon_color_entity_field": "category_color"
+              }
+            },
+            {
+              "col_id": "budget_progress",
+              "entity_field_name": "budget_amount",
+              "col_name": "Spent / Budget",
+              "order": 2,
+              "hasProgress": true,
+              "compare_field_name": {
+                "value_field": "spent_amount",
+                "max_field": "budget_amount",
+                "percentage_field": "percentage_used",
+                "color_field": "category_color"
+              }
+            },
+            {
+              "col_id": "spent_amount",
+              "entity_field_name": "spent_amount",
+              "col_name": "Spent Amount",
+              "order": 3,
+              "hide": true
+            },
+            {
+              "col_id": "percentage_used",
+              "entity_field_name": "percentage_used",
+              "col_name": "Percentage Used",
+              "order": 4,
+              "hide": true
+            },
+            {
+              "col_id": "icon",
+              "entity_field_name": "category_icon",
+              "col_name": "Icon",
+              "order": 5,
+              "hide": true
+            },
+            {
+              "col_id": "category_color",
+              "entity_field_name": "category_color",
+              "col_name": "Category Color",
+              "order": 6,
+              "hide": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "field_id": "bottom-container",
+      "field_type": "layoutContainer",
+      "width": 12,
+      "children": [
+        {
+          "field_id": "transaction-table",
+          "field_type": "tableComponent",
+          "entity_name": "v_transaction_list",
+          "width": 8,
+          "tableTitle": "Recent Transactions",
+          "enableViewMore": {
+            "redirectPage": "/app/transactions",
+            "restrictRowCount": 5
+          },
+          "columns": [
+            {
+              "col_id": "description",
+              "entity_field_name": "description",
+              "col_name": "Description",
+              "order": 1,
+              "icon": { "has_icon": true, "has_icon_colour": true }
+            },
+            {
+              "col_id": "category",
+              "entity_field_name": "category_name",
+              "col_name": "Category",
+              "order": 2
+            },
+            {
+              "col_id": "datetime",
+              "entity_field_name": "transaction_data",
+              "col_name": "Datetime",
+              "order": 3,
+              "colType": "date"
+            },
+            {
+              "col_id": "amount",
+              "entity_field_name": "amount",
+              "col_name": "Amount",
+              "order": 4,
+              "isAmount": true,
+              "sx": {
+                "fontWeight": 600,
+                "color": "#101A44"
+              }
+            },
+            {
+              "col_id": "icon",
+              "entity_field_name": "icon",
+              "col_name": "icon",
+              "order": 5,
+              "hide": true
+            },
+            {
+              "col_id": "color",
+              "entity_field_name": "color",
+              "col_name": "color",
+              "order": 6,
+              "hide": true
+            }
+          ]
+        },
+        {
+          "field_id": "upcoming-bills",
+          "field_type": "tableComponent",
+          "entity_name": "v_upcoming_bills",
+          "tableTitle": "Upcoming Bills",
+          "width": 4,
+          "enableViewMore": {
+            "redirectPage": "/app/subscriptions",
+            "restrictRowCount": 4
+          },
+          "columns": [
+            {
+              "col_id": "description",
+              "entity_field_name": "description",
+              "col_name": "Bill Name",
+              "order": 1,
+              "icon": { "hasIcon": true, "hasIconColor": true }
+            },
+            {
+              "col_id": "due_date",
+              "entity_field_name": "due_date",
+              "col_name": "Due Date",
+              "order": 2,
+              "colType": "date"
+            },
+            {
+              "col_id": "amount",
+              "entity_field_name": "amount",
+              "col_name": "Amount",
+              "order": 3,
+              "isAmount": true,
+              "sx": {
+                "fontWeight": 600,
+                "color": "#101A44"
+              }
+            },
+            {
+              "col_id": "icon",
+              "entity_field_name": "icon",
+              "col_name": "Icon",
+              "order": 4,
+              "hide": true
+            },
+            {
+              "col_id": "color",
+              "entity_field_name": "color",
+              "col_name": "Color",
+              "order": 5,
+              "hide": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

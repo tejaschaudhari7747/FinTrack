@@ -1,0 +1,186 @@
+{
+  "entity_name": "v_category_summary",
+  "title": "Categories",
+  "description": "View and manage all your categories.",
+  "components": [
+    {
+      "field_id": "categories-table",
+      "field_type": "tableComponent",
+      "entity_name": "v_category_summary",
+      "pagetitle": "Add categories",
+      "parent_entity": "categories",
+      "columns": [
+        {
+          "col_id": "category_name",
+          "entity_field_name": "category_name",
+          "col_name": "Category Name",
+          "order": 1,
+          "icon": {
+            "icon_entity_field": "icon",
+            "icon_color_entity_field": "color"
+          }
+        },
+        {
+          "col_id": "category_type",
+          "entity_field_name": "category_type",
+          "col_name": "Type",
+          "order": 2,
+          "value_based_color": "true"
+        },
+        {
+          "col_id": "transactions",
+          "entity_field_name": "transaction_count",
+          "col_name": "Transactions",
+          "order": 3
+        },
+        {
+          "col_id": "total_amount",
+          "entity_field_name": "total_amount",
+          "col_name": "Total Amount",
+          "isAmount": true,
+          "order": 4,
+          "sx": {
+            "fontWeight": 600,
+            "color": "#101A44"
+          }
+        },
+        {
+          "col_id": "status",
+          "entity_field_name": "status",
+          "col_name": "Status",
+          "order": 5,
+          "value_based_color": "true"
+        },
+        {
+          "col_id": "category_icon",
+          "entity_field_name": "icon",
+          "col_name": "Category Icon",
+          "order": 6,
+          "hide": true
+        },
+        {
+          "col_id": "category_color",
+          "entity_field_name": "color",
+          "col_name": "Category Color",
+          "order": 7,
+          "hide": true
+        },
+        {
+          "col_id": "category_type",
+          "entity_field_name": "category_type",
+          "col_name": "Category Type",
+          "order": 8,
+          "hide": true
+        }
+      ],
+      "toolbars": [
+        {
+          "toolbar_id": "categories_add",
+          "isbutton": true,
+          "toolbar_name": "Add Categories",
+          "toolbar_action": "add",
+          "entity_name": "categories",
+          "order": 1,
+          "component_path": "categories/addCategories/addCategories"
+        },
+        {
+          "toolbar_id": "categories_edit",
+          "isbutton": false,
+          "toolbar_name": "Edit categories",
+          "toolbar_action": "edit",
+          "entity_name": "categories",
+          "order": 2,
+          "component_path": "categories/addCategories/addCategories"
+        },
+        {
+          "toolbar_id": "categories_delete",
+          "isbutton": false,
+          "toolbar_name": "Delete Categories",
+          "toolbar_action": "delete",
+          "entity_name": "categories",
+          "order": 4
+        }
+      ],
+      "filters": {
+        "layout": "popover",
+        "title": "Filter Transactions",
+        "applyLabel": "Apply Filters",
+        "resetLabel": "Reset",
+        "fields": [
+          {
+            "field_id": "date_range",
+            "field_type": "dropdownComponent",
+            "label": "Date Range",
+            "entity_field_name": "date",
+            "listname": "categories",
+            "optCode": "id",
+            "optValue": "name"
+          },
+          {
+            "field_id": "category_id",
+            "field_type": "dropdownComponent",
+            "label": "Transaction Type",
+            "listname": "categories",
+            "optCode": "id",
+            "optValue": "name",
+            "entity_field_name": "type"
+          },
+          {
+            "field_id": "payment_method",
+            "field_type": "dropdownComponent",
+            "label": "Payment Method",
+            "listname": "categories",
+            "optCode": "id",
+            "optValue": "name",
+            "entity_field_name": "Payment_Method"
+          },
+          {
+            "field_id": "amount_min",
+            "field_type": "textfield",
+            "label": "Minimum Amount",
+            "placeholder": "Min amount",
+            "entity_field_name": "amount",
+            "filterOperator": "greaterthan"
+          },
+          {
+            "field_id": "amount_max",
+            "field_type": "textfield",
+            "label": "Maximum Amount",
+            "placeholder": "Max amount",
+            "entity_field_name": "amount",
+            "filterOperator": "lessthan"
+          },
+          {
+            "field_id": "merchant",
+            "field_type": "autocomplete",
+            "label": "Merchant",
+            "placeholder": "Search merchant...",
+            "entity_field_name": "Merchant"
+          }
+        ]
+      },
+      "gridFilter": {
+        "defaultFilter": "All",
+        "entity_field": "category_type",
+        "options": [
+          {
+            "label": "All",
+            "value": "All"
+          },
+          {
+            "label": "Expense",
+            "value": "Expense"
+          },
+          {
+            "label": "Income",
+            "value": "Income"
+          },
+          {
+            "label": "Transfer",
+            "value": "Transfer"
+          }
+        ]
+      }
+    }
+  ]
+}
